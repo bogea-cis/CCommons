@@ -1,0 +1,45 @@
+OUTPUT_FILE = CEFTMFPTR.SO
+CPP = g++
+
+OUTPUT_DIR = Release
+
+INCLUDE_DIRS =  -I ../../../../libusb-0.1.12/source \
+				-I ../include \
+				-I ../common
+				
+LIBRARY_PATH =  -L ../../../../libusb-0.1.12/deploy/32-bits
+LIBS = -lpthread -lusb
+
+DEBUG_FLAGS = -Wall -O0 -g3 -DLIBUSB01 -fno-inline -fmessage-length=0 -fno-strict-aliasing -fPIC -pthread $(INCLUDE_DIRS) $(LIBRARY_PATH)
+RELEASE_FLAGS = -Wall -O2 -DLIBUSB01 -fmessage-length=0 -fno-strict-aliasing -fPIC -pthread $(INCLUDE_DIRS) $(LIBRARY_PATH)
+
+SOURCES = $(shell find ../ -iname *.cpp)
+OBJS = $(SOURCES:.cpp=.o)
+
+C_SOURCES = $(shell find ../ -iname *.c)
+C_OBJS = $(C_SOURCES:.c=.o)
+
+all: 
+	make $(OUTPUT_FILE)
+
+$(OUTPUT_FILE) : createOutputDir $(C_OBJS) $(OBJS)
+	@echo $(C_OBJS)
+	@echo $(OBJS)
+	$(CPP) $(DEBUG_FLAGS) $(C_OBJS) $(OBJS) $(LIBS) -shared -o $(OUTPUT_DIR)/$(OUTPUT_FILE)
+	rm -rf $(OBJS)
+	rm -rf $(C_OBJS)
+	
+createOutputDir:
+	@mkdir -p $(OUTPUT_DIR)
+
+%.o : %.cpp
+	@echo $<
+	$(CPP) $(DEBUG_FLAGS) -c $< -o $@
+
+%.o : %.c
+	$(CC) $(DEBUG_FLAGS) -c $< -o $@	
+	
+clean:
+	rm -rf $(OBJS)
+	rm -rf $(C_OBJS)
+

@@ -1,0 +1,12 @@
+LIBRARY	"CEFTMFPTR"
+EXPORTS
+	CEF_TMF_PTR_Initialize          @1
+	CEF_TMF_PTR_Terminate           @2
+	CEF_TMF_PTR_Reset               @3
+	CEF_TMF_PTR_PrintLine           @4
+	CEF_TMF_PTR_PrintDoc            @5
+	CEF_TMF_PTR_GetStatus           @6
+	CEF_TMF_PTR_DocumentInserted    @7
+	CEF_TMF_PTR_IoControl           @8
+	CEF_TMF_PTR_Who                 @9
+	CEF_TMF_PTR_ReceiptCut          @10
