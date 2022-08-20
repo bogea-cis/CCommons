@@ -11,7 +11,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <CBasicStringList.h>
+#include "CBasicStringList.h"
 
 const unsigned int STRING_TABLE_DEFAULT_BLOCK_LEN = 16;
 

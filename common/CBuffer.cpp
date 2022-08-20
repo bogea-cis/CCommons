@@ -448,7 +448,7 @@ void CBuffer::lTrim (const unsigned char character)
 	
 	if (i == m_bufferLen)
 	{
-		//apenas com espaço
+		//apenas com espaÃ§o
 		this->clear ();
 	}
 	else if (i > 0)
@@ -472,7 +472,7 @@ void CBuffer::rTrim (const unsigned char character)
 	
 	if (i < 0)
 	{
-		//apenas com espaço
+		//apenas com espaÃ§o
 		this->clear ();
 	}
 	else if (i >= 0)
@@ -903,7 +903,7 @@ void CBuffer::bcdPack (CBuffer& packedBuffer)
 	unsigned char packed;
 	packedBuffer.clear();
 
-	//Percorre o vetor de dados de entrada, para comprimí-los
+	//Percorre o vetor de dados de entrada, para comprimÃ­-los
 	for( int i = 0; i < m_bufferLen; i += 2)
 	{
 		m_buffer[i] = toupper(m_buffer[i]);
@@ -974,7 +974,7 @@ void CBuffer::pack (CBuffer& packedBuffer)
 
 	packedBuffer.clear();
 
-	//Percorre o vetor de dados de entrada, para comprimí-los
+	//Percorre o vetor de dados de entrada, para comprimÃ­-los
     for (int i = 0; i < m_bufferLen; i += 2)
 	{
 		//Ex: 0011 1010 (A)

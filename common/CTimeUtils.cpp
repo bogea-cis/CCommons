@@ -23,7 +23,19 @@ CTimeUtils::~CTimeUtils()
 {
 
 }
-
+#ifdef WINDOWS
+void CTimeUtils::usleep(unsigned long microsec) 
+{
+    struct timespec req={0};  
+    time_t sec = ( int)( microsec / 1000);  
+    microsec = microsec - ( sec * 1000);  
+    req.tv_sec = sec;  
+    req.tv_nsec = microsec * 1000L;  
+    
+    while( nanosleep( &req, &req) == -1)  
+         continue;  
+}
+#endif
 void CTimeUtils::msleep(unsigned long milisec)  
 {  
 #ifdef WINDOWS

@@ -12,7 +12,9 @@ public:
 	virtual ~CTimeUtils();
 
 	static void msleep(unsigned long milisec);
-
+#ifdef WINDOWS        
+        static void usleep(unsigned long microsec);
+#endif
 	void start (int timeout);
 	
 	bool checkTimeout ();
